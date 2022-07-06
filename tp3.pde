@@ -14,12 +14,12 @@ void setup() {
   newMemoria=5;
   colorMode(RGB);
   columnas [0] = 0;
-  columnas [1] = 199;
+  columnas [1] = 200;
   columnas [2] = 400;
   columnas [3] = 600;
 
   filas [0] = 0;
-  filas [1] = 199;
+  filas [1] = 200;
   filas [2] = 400;
   filas [3] = 600;
 
@@ -31,12 +31,12 @@ void setup() {
   memoria [4]=  loadImage("imagineDragons.jpg");
   memoria [5]= loadImage("rauw.jpg");
   relleno=230;
-
+  apareceAlbum=false;
   estado= "inicio";
 }
 
 void draw() {
-  apareceAlbum=mouseX>0 & mouseY>0 & mouseX<200 & mouseY>200;
+
   if (estado.equals("inicio")) {
     uImagenes();
     for (int i=0; i< cant; i++) {
@@ -52,18 +52,18 @@ void draw() {
 
 void mouseClicked() {
   if (estado.equals("inicio") && apareceAlbum) {
+    rect(0, 0, 200, 200); noFill();
+  }
+
+
+  if (mouseX>columnas[0] && mouseX<columnas[1] && mouseY>filas[0] && mouseY <filas[1]) {
+   // areceAlbum=false;
     rect(0, 0, 200, 200);
     noFill();
   }
-  
-
-if(mouseX>columnas[0] && mouseX<columnas[1] && mouseY>filas[0] && mouseY <filas[1]){
-  apareceAlbum=false;
-  rect(0, 0, 200, 200);
+  if (mouseX>columnas[1] && mouseX<columnas[2] && mouseY>filas[0] && mouseY <filas[1]) {
+    //apeceAlbum=false;
+    rect(200, 0, 400, 200);
     noFill();
-  
-  
-  
-  
-}
+  }
 }
