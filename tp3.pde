@@ -72,3 +72,23 @@ void draw() {
  memoria[0];
  }
  }*/
+ 
+ 
+ void capa1(){
+if(mousePressed && ( mouseX>=0 & mouseY>=0 & mouseX<=0+200 & mouseY <=0+200)){
+  
+  apareceAlbum=false; }
+
+if(apareceAlbum){
+ rect(0, 0, 200, 200) ;
+}
+if(mousePressed && ( mouseX>=200 & mouseY>=0 & mouseX<=200+200 & mouseY <=0+200)){
+  
+  apareceAlbum=false; }
+
+if(apareceAlbum){
+ rect(200, 0, 200, 200) ;
+}
+
+
+}
