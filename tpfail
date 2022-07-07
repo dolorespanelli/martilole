@@ -3,7 +3,6 @@ PImage []memoria = new PImage[12];
 int []columnas = new int[5];
 int []filas = new int[5];
 color relleno;
-boolean apareceAlbum;
 int estado;
 int contador;
 PFont letrita;
@@ -99,12 +98,13 @@ void mousePressed() {
     estado=3;
   } else if (estado==3){
     imagenes();
-    if(contador>= 0/700 );
-  }else if (estado==3){
+  } else if (contador>=5*700) {
+    estado=5; 
+    
+}else if (estado==3){
     estado=4;  
  }
 }
-
 
 
 
