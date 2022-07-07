@@ -1,11 +1,11 @@
 int cant, tam, newMemoria;
-PImage []memoria = new PImage[12];
+PImage []memoria = new PImage[13];
 int []columnas = new int[5];
 int []filas = new int[5];
 color relleno;
 int estado;
 int contador;
-PFont letrita;
+PFont letrita, creditos;
 
 void setup() {
   size(800, 600);
@@ -26,10 +26,10 @@ void setup() {
   filas [3] = 600;
 
   letrita=createFont("Lemon Days.ttf", 100);
-
+  creditos=createFont("SultanNahiaW20.ttf", 100);
   memoria [0]= loadImage("taylorSwift.jpg");
-  memoria [1]= loadImage("zayn.jpg");
-  memoria [2]=  loadImage("badBunny.jpg");
+  memoria [1]= loadImage("shawn.jpg");
+  memoria [2]=  loadImage("zayn.jpg");
   memoria [3]=  loadImage("queen.jpg");
   memoria [4]=  loadImage("imagineDragons.jpg");
   memoria [5]= loadImage("rauw.jpg");
@@ -37,8 +37,9 @@ void setup() {
   memoria [7]=loadImage("niall.jpg");
   memoria [8]=loadImage("harry.jpg");
   memoria [9]=loadImage("lanadelrey.jpg");
-  memoria [10]=loadImage("shawn.jpg");
+  memoria [10]=loadImage("badBunny.jpg");
   memoria [11]=loadImage("billie.jpg");
+  memoria [12]=loadImage("estrellitas.png");
   relleno=color(254, 185, 255);
   estado=0;
   contador=0;
@@ -51,44 +52,65 @@ void draw() {
     rect(800, 600, 800, 600);
     textAlign(CENTER, CENTER);
     background(relleno);
+    fill(255);
     text("CLICKEALBUMS", 400, 300);
+    image(memoria[12], 500, 0, 300, 280);
+    image(memoria[12], 0, 400, 300, 280);
   } else if (estado==1) {
     background(relleno);
     textSize(60);
-    fill(255,0,0);
+    fill(255, 0, 0);
     text("INSTRUCCIONES", 400, 150);
     textSize(50);
-    text("Destapa todos los albums \nantes de los 5 segundos",400,300);
+    text("Destapa todos los albums \nantes de los 5 segundos", 400, 300);
     textSize(20);
-    text("Haz doble click para jugar :)",400,490);
-  } else if (estado==2){
+    text("Haz doble click para jugar :)", 400, 490);
+  } else if (estado==2) {
     fill(relleno);
     textSize(60);
     text("INSTRUCCIONES", 400, 150);
     textSize(50);
-    text("Destapa todos los albums \nantes de los 5 segundos",400,300);
+    text("Destapa todos los albums \nantes de los 5 segundos", 400, 300);
     textSize(20);
-    text("Haz doble click para jugar :)",400,490);
-  }else if (estado==3) {
+    text("Haz doble click para jugar :)", 400, 490);
+  } else if (estado==3) {
     for (int i=0; i< cant; i++) {
       for (int l=0; l<cant; l++) {
         noFill();
         rect(i*tam, l*tam, 200, 200);
-        contador++; 
-    println( contador );
-    println( contador/700 );
+        contador++;
+        println( contador );
+        println( contador/700 );
+      }
+      // condición perder
+      if (contador>=5*700) {
+        estado=5;
       }
     }
   } else if (estado==4) {
-    text("Ganaste!!!",400,300);
-  } else if (estado==5){
-    text("PERDISTE :(",400,300);
-    
-    
+    text("Ganaste!!!", 400, 300);
+  } else if (estado==5) {
+    background(relleno);
+    fill(255, 0, 0);
+    text("PERDISTE :(", 400, 300);
+    textSize(15);
+    text("SIGUIENTE --> ", 600, 500);
+  } else if (estado==6) {
+    background(relleno);
+    image(memoria[12], 600, 0, 300, 280);
+    image(memoria[12], 0, 400, 300, 280);
+    textFont(creditos);
+    text("Créditos", 400, 50);
+    textSize(40);
+    text("Tecnología Multimedial 1", 400, 180);
+    text("Comisión 2 \n Profesor: Matias Jauregui Lorda", 400, 260);
+    text("Maria Dolores Panelli 91371/7", 400, 340);
+    text("Martina Gamón 91538/3", 400, 380);
+    textFont(letrita);
+    textSize(15);
+    text("Presiona la barra espaciadora para voler a jugar:D", 400, 500);
   }
-  
 }
-
 void mousePressed() {
   if (estado==0) {
     estado=1;
@@ -96,15 +118,23 @@ void mousePressed() {
     estado=2;
   } else if (estado==2) {
     estado=3;
-  } else if (estado==3){
+  } else if (estado==3) {
     imagenes();
-  } else if (contador>=5*700) {
-    estado=5; 
-    
-}else if (estado==3){
-    estado=4;  
- }
+  } else if (estado==3) {
+    estado=4;
+  } else if (estado==4 || estado==5) {
+    estado=6;
+  }
 }
+
+void keyPressed() {
+  if (key==' ') {
+    if (estado==6) {
+      reiniciar();
+    }
+  }
+}
+
 
 
 
