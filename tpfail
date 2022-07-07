@@ -42,6 +42,7 @@ void setup() {
   memoria [11]=loadImage("billie.jpg");
   relleno=color(254, 185, 255);
   estado=0;
+  contador=0;
 }
 
 void draw() {
@@ -51,18 +52,32 @@ void draw() {
     rect(800, 600, 800, 600);
     textAlign(CENTER, CENTER);
     background(relleno);
-    text("DESTAPA \n LOS ALBUMS", 400, 300);
+    text("CLICKEALBUMS", 400, 300);
   } else if (estado==1) {
     background(relleno);
-    text("INSTRUCCIONES", 400, 300);
+    textSize(60);
+    fill(255,0,0);
+    text("INSTRUCCIONES", 400, 150);
+    textSize(50);
+    text("Destapa todos los albums \nantes de los 5 segundos",400,300);
+    textSize(20);
+    text("Haz doble click para jugar :)",400,490);
   } else if (estado==2){
     fill(relleno);
-    text("INSTRUCCIONES", 400, 300);
+    textSize(60);
+    text("INSTRUCCIONES", 400, 150);
+    textSize(50);
+    text("Destapa todos los albums \nantes de los 5 segundos",400,300);
+    textSize(20);
+    text("Haz doble click para jugar :)",400,490);
   }else if (estado==3) {
     for (int i=0; i< cant; i++) {
       for (int l=0; l<cant; l++) {
         noFill();
         rect(i*tam, l*tam, 200, 200);
+        contador++; 
+    println( contador );
+    println( contador/700 );
       }
     }
   } else if (estado==4) {
@@ -84,13 +99,11 @@ void mousePressed() {
     estado=3;
   } else if (estado==3){
     imagenes();
+    if(contador>= 0/700 );
   }else if (estado==3){
     estado=4;  
  }
 }
-
-
-
 
 
 
