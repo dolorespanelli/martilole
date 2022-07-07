@@ -14,7 +14,6 @@ void setup() {
   tam= 800/cant;
   newMemoria=5;
   colorMode(RGB);
-   background(relleno);
 
   columnas [0] = 0;
   columnas [1] = 200;
@@ -27,7 +26,7 @@ void setup() {
   filas [2] = 400;
   filas [3] = 600;
 
-  letrita=createFont("Lemon Days.ttf", 50);
+  letrita=createFont("Lemon Days.ttf", 100);
 
   memoria [0]= loadImage("taylorSwift.jpg");
   memoria [1]= loadImage("zayn.jpg");
@@ -47,73 +46,49 @@ void setup() {
 
 void draw() {
   strokeWeight(2);
+  textFont(letrita);
   if (estado==0) {
     rect(800, 600, 800, 600);
+    textAlign(CENTER, CENTER);
     background(relleno);
-    text("MEMO TEST", 90, 100);
+    text("DESTAPA \n LOS ALBUMS", 400, 300);
   } else if (estado==1) {
-    text("INSTRUCCIONES", 400, 200);
-  } else if (estado==2) {
-    // uImagenes();
+    background(relleno);
+    text("INSTRUCCIONES", 400, 300);
+  } else if (estado==2){
+    fill(relleno);
+    text("INSTRUCCIONES", 400, 300);
+  }else if (estado==3) {
     for (int i=0; i< cant; i++) {
       for (int l=0; l<cant; l++) {
-        rect(i*tam, l*tam, 400, 400);
         noFill();
-     }
+        rect(i*tam, l*tam, 200, 200);
+      }
     }
+  } else if (estado==4) {
+    text("Ganaste!!!",400,300);
+  } else if (estado==5){
+    text("PERDISTE :(",400,300);
+    
+    
   }
-}
   
+}
 
+void mousePressed() {
+  if (estado==0) {
+    estado=1;
+  } else if (estado==1) {
+    estado=2;
+  } else if (estado==2) {
+    estado=3;
+  } else if (estado==3){
+    imagenes();
+  }else if (estado==3){
+    estado=4;  
+ }
+}
 
-
-  void mousePressed() {
-    if (estado==0) {
-      estado=1;
-   
-    } else if (estado==1) {
-      estado=2;
-    } else if (estado==2) {
-     
-      if (mouseX>columnas[0] && mouseX<columnas[1] && mouseY>filas[0] && mouseY <filas[1]) {
-        image(memoria[0], 0, 0, 200, 200);
-      }
-      if (mouseX>columnas[1] && mouseX<columnas[2] && mouseY>filas[0] && mouseY <filas[1]) {
-        //apeceAlbum=false;
-        image(memoria[1], 200, 0, 200, 200);
-      }
-      if (mouseX>columnas[2] && mouseX<columnas[3] && mouseY>filas[0] && mouseY <filas[1]) {
-        image(memoria[2], 400, 0, 200, 200);
-      }
-      if (mouseX>columnas[3] && mouseX<columnas[4] && mouseY>filas[0] && mouseY <filas[1]) {
-        image(memoria[3], 600, 0, 200, 200);
-      }
-      if (mouseX>columnas[0] && mouseX<columnas[1] && mouseY>filas[1] && mouseY <filas[2]) {
-        image(memoria[4], 0, 200, 200, 200);
-      }
-      if (mouseX>columnas[1] && mouseX<columnas[2] && mouseY>filas[1] && mouseY <filas[2]) {
-        image(memoria[5], 200, 200, 200, 200);
-      }
-      if (mouseX>columnas[2] && mouseX<columnas[3] && mouseY>filas[1] && mouseY <filas[2]) {
-        image(memoria[6], 400, 200, 200, 200);
-      }
-      if (mouseX>columnas[3] && mouseX<columnas[4] && mouseY>filas[1] && mouseY <filas[2]) {
-        image(memoria[7], 600, 200, 200, 200);
-      }
-      if (mouseX>columnas[0] && mouseX<columnas[1] && mouseY>filas[2] && mouseY <filas[3]) {
-        image(memoria[8], 0, 400, 200, 200);
-      }
-      if (mouseX>columnas[1] && mouseX<columnas[2] && mouseY>filas[2] && mouseY <filas[3]) {
-        image(memoria[9], 200, 400, 200, 200);
-      }
-      if (mouseX>columnas[2] && mouseX<columnas[3] && mouseY>filas[2] && mouseY <filas[3]) {
-        image(memoria[10], 400, 400, 200, 200);
-      }
-      if (mouseX>columnas[3] && mouseX<columnas[4] && mouseY>filas[2] && mouseY <filas[3]) {
-        image(memoria[11], 600, 400, 200, 200);
-      }
-    }
-  }
 
 
 
