@@ -98,3 +98,37 @@ void mouseClicked() {
     image(memoria[0],600,400,200,200);
  }
 }
+
+void draw() {
+  if(estado==0){
+    rect(800,600,800,600);
+  
+  }else if(estado==1){
+    strokeWeight(2);
+
+    uImagenes();
+    for (int i=0; i< cant; i++) {
+      for (int l=0; l<cant; l++) {
+       rect(i*tam, l*tam, 400, 400);
+       fill(relleno);
+      }
+    }
+  }
+   
+  if (estado==3) {
+    rect(800,600,800,600);
+  }
+  
+ 
+}
+
+
+
+void mousePressed() {
+if(estado==0){
+  estado=1;
+} else if(estado==1) {
+
+estado=3;
+ }
+}
