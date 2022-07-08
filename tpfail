@@ -4,14 +4,17 @@ int []columnas = new int[5];
 int []filas = new int[5];
 color relleno;
 int estado;
-int contador;
+int contador,imagenesDescubiertasCantidad;
 PFont letrita, creditos;
+boolean []imagenesDescubiertas=new boolean[12];
+boolean []ganar= new boolean[12];
 
 void setup() {
   size(800, 600);
   cant= 4;
   tam= 800/cant;
   newMemoria=5;
+  imagenesDescubiertasCantidad=0;
   colorMode(RGB);
 
   columnas [0] = 0;
@@ -41,6 +44,20 @@ void setup() {
   memoria [11]=loadImage("billie.jpg");
   memoria [12]=loadImage("estrellitas.png");
   relleno=color(254, 185, 255);
+
+  ganar[0] =false;
+  ganar[1] =false;
+  ganar[2] =false;
+  ganar[3] =false;
+  ganar[4] =false;
+  ganar[5] =false;
+  ganar[6] =false;
+  ganar[7] =false;
+  ganar[8] =false;
+  ganar[9] =false;
+  ganar[10] =false;
+  ganar[11] =false;
+
   estado=0;
   contador=0;
 }
@@ -48,6 +65,8 @@ void setup() {
 void draw() {
   strokeWeight(2);
   textFont(letrita);
+
+
   if (estado==0) {
     rect(800, 600, 800, 600);
     textAlign(CENTER, CENTER);
@@ -83,11 +102,33 @@ void draw() {
         println( contador/700 );
       }
       // condición perder
-      if (contador>=5*700) {
+      if (contador>=6*700) {
         estado=5;
       }
     }
-  } else if (estado==4) {
+  }
+
+  //condicion ganar
+   //Medir si ganaste
+      int imagenesDescubiertasCantidad;
+      imagenesDescubiertasCantidad = 0;
+      for (int i = 0; i < 12; i ++) {
+        imagenesDescubiertas[i] = false;
+
+        if (ganar[i] == true) {
+          imagenesDescubiertas[i] = true;
+          imagenesDescubiertasCantidad++;
+        }
+        if (imagenesDescubiertasCantidad == 12) {
+          if (contador<=6*700) {
+            estado =4;
+          }
+        }
+      }
+
+
+  if (estado==4) {
+    background(255, 0, 0);
     text("Ganaste!!!", 400, 300);
   } else if (estado==5) {
     background(relleno);
@@ -121,11 +162,14 @@ void mousePressed() {
   } else if (estado==3) {
     imagenes();
   } else if (estado==3) {
-    estado=4;
-  } else if (estado==4 || estado==5) {
+   
+      
+    }
+  if (estado==4 || estado==5) {
     estado=6;
   }
 }
+
 
 void keyPressed() {
   if (key==' ') {
@@ -134,9 +178,6 @@ void keyPressed() {
     }
   }
 }
-
-
-
 
 
 
