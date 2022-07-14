@@ -1,10 +1,12 @@
+//https://youtu.be/p7iagHJcO2Q
+//MARTINA GAMON 91538/3 Y DOLORES PANLLI 91371/7
 int cant, tam, newMemoria;
 PImage []memoria = new PImage[13];
 int []columnas = new int[5];
 int []filas = new int[5];
 color relleno;
 int estado;
-int contador,imagenesDescubiertasCantidad;
+int contador, imagenesDescubiertasCantidad;
 PFont letrita, creditos;
 boolean []imagenesDescubiertas=new boolean[12];
 boolean []ganar= new boolean[12];
@@ -17,16 +19,13 @@ void setup() {
   imagenesDescubiertasCantidad=0;
   colorMode(RGB);
 
-  columnas [0] = 0;
-  columnas [1] = 200;
-  columnas [2] = 400;
-  columnas [3] = 600;
-  columnas [4] = 800;
+  for (int i=0; i < columnas.length; i++) {
+    columnas[i]= i*200;
+  }
 
-  filas [0] = 0;
-  filas [1] = 200;
-  filas [2] = 400;
-  filas [3] = 600;
+  for (int i=0; i < filas.length; i++) {
+    filas[i]= i*200;
+  }
 
   letrita=createFont("Lemon Days.ttf", 100);
   creditos=createFont("SultanNahiaW20.ttf", 100);
@@ -45,18 +44,10 @@ void setup() {
   memoria [12]=loadImage("estrellitas.png");
   relleno=color(254, 185, 255);
 
-  ganar[0] =false;
-  ganar[1] =false;
-  ganar[2] =false;
-  ganar[3] =false;
-  ganar[4] =false;
-  ganar[5] =false;
-  ganar[6] =false;
-  ganar[7] =false;
-  ganar[8] =false;
-  ganar[9] =false;
-  ganar[10] =false;
-  ganar[11] =false;
+
+  for (int i=0; i < ganar.length; i++) {
+    ganar[i]= false;
+  }
 
   estado=0;
   contador=0;
@@ -75,6 +66,11 @@ void draw() {
     text("CLICKEALBUMS", 400, 300);
     image(memoria[12], 500, 0, 300, 280);
     image(memoria[12], 0, 400, 300, 280);
+    textSize(15);
+    noFill();
+    rect(550, 480, 100, 30);
+    fill(0);
+    text("SIGUIENTE", 600, 492);
   } else if (estado==1) {
     background(relleno);
     textSize(60);
@@ -102,30 +98,33 @@ void draw() {
         println( contador/700 );
       }
       // condición perder
-      if (contador>=6*700) {
+      if (contador>=5*700) {
         estado=5;
       }
     }
   }
+  //Medir si ganaste
+  int imagenesDescubiertasCantidad;
+  imagenesDescubiertasCantidad = 0;
+  for (int i = 0; i < 12; i ++) {
+    imagenesDescubiertas[i] = false;
 
-  //condicion ganar
-   //Medir si ganaste
-      int imagenesDescubiertasCantidad;
-      imagenesDescubiertasCantidad = 0;
-      for (int i = 0; i < 12; i ++) {
-        imagenesDescubiertas[i] = false;
-
-        if (ganar[i] == true) {
-          imagenesDescubiertas[i] = true;
-          imagenesDescubiertasCantidad++;
-        }
-        if (imagenesDescubiertasCantidad == 12) {
-          if (contador<=6*700) {
-            estado =4;
-          }
+    if (ganar[i] == true) {
+      imagenesDescubiertas[i] = true;
+      imagenesDescubiertasCantidad++;
+    }
+    if (imagenesDescubiertasCantidad == 12) {
+      if (contador<=6*700) {
+        estado =4;
+      }
+      if (key==' ') {
+        if (estado==4) {
+          reiniciar();
+          setup();
         }
       }
-
+    }
+  }
 
   if (estado==4) {
     background(255, 0, 0);
@@ -135,12 +134,16 @@ void draw() {
     fill(255, 0, 0);
     text("PERDISTE :(", 400, 300);
     textSize(15);
-    text("SIGUIENTE --> ", 600, 500);
+    noFill();
+    rect(550, 480, 100, 30);
+    fill(0);
+    text("SIGUIENTE", 600, 492);
   } else if (estado==6) {
     background(relleno);
     image(memoria[12], 600, 0, 300, 280);
     image(memoria[12], 0, 400, 300, 280);
     textFont(creditos);
+    fill(255, 0, 0);
     text("Créditos", 400, 50);
     textSize(40);
     text("Tecnología Multimedial 1", 400, 180);
@@ -161,11 +164,7 @@ void mousePressed() {
     estado=3;
   } else if (estado==3) {
     imagenes();
-  } else if (estado==3) {
-   
-      
-    }
-  if (estado==4 || estado==5) {
+  } else if (estado==5) {
     estado=6;
   }
 }
@@ -178,6 +177,5 @@ void keyPressed() {
     }
   }
 }
-
 
 
