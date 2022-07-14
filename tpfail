@@ -1,4 +1,4 @@
-//https://youtu.be/p7iagHJcO2Q
+//link youtube
 //MARTINA GAMON 91538/3 Y DOLORES PANLLI 91371/7
 int cant, tam, newMemoria;
 PImage []memoria = new PImage[13];
@@ -98,7 +98,7 @@ void draw() {
         println( contador/700 );
       }
       // condición perder
-      if (contador>=5*700) {
+      if (contador>=9*700) {
         estado=5;
       }
     }
@@ -114,21 +114,25 @@ void draw() {
       imagenesDescubiertasCantidad++;
     }
     if (imagenesDescubiertasCantidad == 12) {
-      if (contador<=6*700) {
+      if (contador<=9*700) {
         estado =4;
       }
-      if (key==' ') {
-        if (estado==4) {
-          reiniciar();
-          setup();
-        }
+      if (estado==4) {
+        setup();
+        estado=4;
       }
     }
   }
 
   if (estado==4) {
+    fill(relleno);
     background(255, 0, 0);
     text("Ganaste!!!", 400, 300);
+    textSize(15);
+    noFill();
+    rect(550, 480, 100, 30);
+    fill(0);
+    text("SIGUIENTE", 600, 492);
   } else if (estado==5) {
     background(relleno);
     fill(255, 0, 0);
@@ -164,7 +168,7 @@ void mousePressed() {
     estado=3;
   } else if (estado==3) {
     imagenes();
-  } else if (estado==5) {
+  } else if (estado==4 || estado==5) {
     estado=6;
   }
 }
@@ -177,5 +181,3 @@ void keyPressed() {
     }
   }
 }
-
-
