@@ -43,20 +43,17 @@ void setup() {
   memoria [11]=loadImage("billie.jpg");
   memoria [12]=loadImage("estrellitas.png");
   relleno=color(254, 185, 255);
-
+  estado=0;
+  contador=0;
 
   for (int i=0; i < ganar.length; i++) {
     ganar[i]= false;
   }
-
-  estado=0;
-  contador=0;
 }
 
 void draw() {
   strokeWeight(2);
   textFont(letrita);
-
 
   if (estado==0) {
     rect(800, 600, 800, 600);
@@ -66,28 +63,21 @@ void draw() {
     text("CLICKEALBUMS", 400, 300);
     image(memoria[12], 500, 0, 300, 280);
     image(memoria[12], 0, 400, 300, 280);
-    textSize(15);
     noFill();
     rect(550, 480, 100, 30);
     fill(0);
-    text("SIGUIENTE", 600, 492);
+    texto("SIGUIENTE", 600, 502, 20);
   } else if (estado==1) {
     background(relleno);
-    textSize(60);
     fill(255, 0, 0);
-    text("INSTRUCCIONES", 400, 150);
-    textSize(50);
-    text("Destapa todos los albums \nantes de los 5 segundos", 400, 300);
-    textSize(20);
-    text("Haz doble click para jugar :)", 400, 490);
+    texto("INSTRUCCIONES", 400, 150, 60);
+    texto("Destapa todos los albums \nantes de los 5 segundos", 400, 300, 50);
+    texto("Haz doble click para jugar :)", 400, 490, 20);
   } else if (estado==2) {
     fill(relleno);
-    textSize(60);
-    text("INSTRUCCIONES", 400, 150);
-    textSize(50);
-    text("Destapa todos los albums \nantes de los 5 segundos", 400, 300);
-    textSize(20);
-    text("Haz doble click para jugar :)", 400, 490);
+    texto("INSTRUCCIONES", 400, 150, 60);
+    texto("Destapa todos los albums \nantes de los 5 segundos", 400, 300, 50);
+    texto("Haz doble click para jugar :)", 400, 490, 20);
   } else if (estado==3) {
     for (int i=0; i< cant; i++) {
       for (int l=0; l<cant; l++) {
@@ -128,35 +118,28 @@ void draw() {
     fill(relleno);
     background(255, 0, 0);
     text("Ganaste!!!", 400, 300);
-    textSize(15);
     noFill();
     rect(550, 480, 100, 30);
     fill(0);
-    text("SIGUIENTE", 600, 492);
+    texto("SIGUIENTE", 600, 502, 20);
   } else if (estado==5) {
     background(relleno);
     fill(255, 0, 0);
     text("PERDISTE :(", 400, 300);
-    textSize(15);
     noFill();
     rect(550, 480, 100, 30);
     fill(0);
-    text("SIGUIENTE", 600, 492);
+    texto("SIGUIENTE", 600, 502, 20);
   } else if (estado==6) {
     background(relleno);
     image(memoria[12], 600, 0, 300, 280);
     image(memoria[12], 0, 400, 300, 280);
     textFont(creditos);
     fill(255, 0, 0);
-    text("Créditos", 400, 50);
-    textSize(40);
-    text("Tecnología Multimedial 1", 400, 180);
-    text("Comisión 2 \n Profesor: Matias Jauregui Lorda", 400, 260);
-    text("Maria Dolores Panelli 91371/7", 400, 340);
-    text("Martina Gamón 91538/3", 400, 380);
+    text("Créditos", 400, 90);
+    texto("Tecnología Multimedial 1 \n Comisión 2 \nProfesor: Matias Jauregui Lorda \n Maria Dolores Panelli 91371/7 \n Martina Gamón 91538/3", 400, 180, 40);
     textFont(letrita);
-    textSize(15);
-    text("Presiona la barra espaciadora para voler a jugar:D", 400, 500);
+    texto("Presiona la barra espaciadora para voler a jugar:D", 400, 500, 15);
   }
 }
 void mousePressed() {
@@ -172,7 +155,6 @@ void mousePressed() {
     estado=6;
   }
 }
-
 
 void keyPressed() {
   if (key==' ') {
